@@ -21,8 +21,7 @@ io.on('connection', (socket) => {
 
   socket.on('gpsUpdate', (data) => {
     console.log('GPS Update received:', data);
-    // Broadcast the GPS update to all connected clients
-    io.emit('gpsUpdate', data);
+    io.emit('gpsUpdate', data); // Broadcast to all clients
   });
 
   socket.on('disconnect', () => {
