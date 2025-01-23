@@ -1,14 +1,19 @@
-// filepath: /websocket-server/index.js
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
+const cors = require('cors');
 
 const app = express();
+app.use(cors()); // Enable CORS for all routes
+
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: '*',
-  },
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true
+  }
 });
 
 io.on('connection', (socket) => {
